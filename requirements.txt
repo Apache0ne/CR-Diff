@@ -1,0 +1,16 @@
+torch
+torchvision
+diffusers
+transformers
+accelerate
+pandas
+numpy
+Pillow
+tqdm
+ImageReward
+aesthetic-predictor-v2-5
+pytorch-fid
+timm
+packaging
+scipy
+matplotlib

@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <!-- Primary Meta Tags -->
+  <meta name="title" content="CR-Diff: Cross-Resolution Diffusion Models via Network Pruning">
+  <!-- TODO: Write a compelling 150-160 character description of your research -->
+  <meta name="description" content="CR-Diff is a pruning-based framework that improves cross-resolution visual consistency of UNet diffusion models via block-wise pruning ratios and Pruned Output Amplification (POA).">
+  <!-- TODO: Add 5-10 relevant keywords for your research area -->
+  <meta name="keywords" content="CR-Diff, Diffusion Models, Pruning, Cross-Resolution, UNet, Stable Diffusion, POA">
+  <!-- TODO: List all authors -->
+  <meta name="author" content="Jiaxuan Ren, Junhan Zhu, Huan Wang">
+  <meta name="robots" content="index, follow">
+  <meta name="language" content="English">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Westlake University">
+  <meta property="og:title" content="CR-Diff: Cross-Resolution Diffusion Models via Network Pruning">
+  <meta property="og:description" content="CR-Diff is a pruning-based framework that improves cross-resolution visual consistency of UNet diffusion models via block-wise pruning ratios and Pruned Output Amplification (POA).">
+  <meta property="og:url" content="https://xuan9-9.github.io/CR-Diff/">
+  <!-- Social preview image -->
+  <meta property="og:image" content="https://xuan9-9.github.io/CR-Diff/figures/teaser_hamburger.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="CR-Diff - Research Overview">
+  <meta property="article:published_time" content="2024-01-01T00:00:00.000Z">
+  <meta property="article:author" content="Jiaxuan Ren, Junhan Zhu, Huan Wang">
+  <meta property="article:section" content="Research">
+  <meta property="article:tag" content="CR-Diff">
+  <meta property="article:tag" content="Diffusion Models">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <!-- TODO: Replace with your lab/institution Twitter handle -->
+  <meta name="twitter:site" content="@YOUR_TWITTER_HANDLE">
+  <!-- TODO: Replace with first author's Twitter handle -->
+  <meta name="twitter:creator" content="@AUTHOR_TWITTER_HANDLE">
+  <!-- TODO: Same as paper title above -->
+  <meta name="twitter:title" content="CR-Diff: Cross-Resolution Diffusion Models via Network Pruning">
+  <!-- TODO: Same as description above -->
+  <meta name="twitter:description" content="BRIEF_DESCRIPTION_OF_YOUR_RESEARCH_CONTRIBUTION_AND_FINDINGS">
+  <!-- Same as social preview image above -->
+  <meta name="twitter:image" content="https://xuan9-9.github.io/CR-Diff/figures/teaser_hamburger.png">
+  <meta name="twitter:image:alt" content="CR-Diff - Research Overview">
+
+  <!-- Academic/Research Specific -->
+  <meta name="citation_title" content="CR-Diff: Cross-Resolution Diffusion Models via Network Pruning">
+  <meta name="citation_author" content="Ren, Jiaxuan">
+  <meta name="citation_author" content="Zhu, Junhan">
+  <meta name="citation_author" content="Wang, Huan">
+  <meta name="citation_publication_date" content="2026">
+  <meta name="citation_conference_title" content="CVPR 2026 Findings">
+  
+  <!-- Additional SEO -->
+  <meta name="theme-color" content="#2563eb">
+  <meta name="msapplication-TileColor" content="#2563eb">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  
+  <!-- Preconnect for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://ajax.googleapis.com">
+  <link rel="preconnect" href="https://documentcloud.adobe.com">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+
+
+  <!-- TODO: Replace with your paper title and authors -->
+  <title>Cross-Resolution Diffusion Models via Network Pruning</title>
+  
+  <!-- Favicon and App Icons -->
+  <link rel="icon" type="image/x-icon" href="static/images/prune.svg">
+  <link rel="apple-touch-icon" href="static/images/prune.svg">
+  
+  <!-- Critical CSS - Load synchronously -->
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+  
+  <!-- Non-critical CSS - Load asynchronously -->
+  <link rel="preload" href="static/css/bulma-carousel.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="static/css/bulma-slider.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="static/css/fontawesome.all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  
+  <!-- Fallback for browsers that don't support preload -->
+  <noscript>
+    <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+    <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+    <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  </noscript>
+  
+  <!-- Fonts - Optimized loading -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Defer non-critical JavaScript -->
+  <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script defer src="static/js/bulma-carousel.min.js"></script>
+  <script defer src="static/js/bulma-slider.min.js"></script>
+  <script defer src="static/js/index.js"></script>
+  
+
+
+  <style>
+    .publication-authors {
+      margin-bottom: 0.2rem;
+    }
+  </style>
+</head>
+<body>
+
+
+  <!-- Scroll to Top Button -->
+  <button class="scroll-to-top" onclick="scrollToTop()" title="Scroll to top" aria-label="Scroll to top">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+  <main id="main-content">
+    <section class="hero">
+      <div class="hero-body"  style="padding-bottom: 1rem;">
+        <div class="container is-max-desktop">
+          <div class="columns is-centered">
+            <div class="column has-text-centered">
+              <h1 class="title is-1 publication-title" style="margin-bottom: 0.5rem;">
+                CR-Diff: Cross-Resolution Diffusion Models via Network Pruning
+              </h1>
+              
+              <div class="is-size-3 has-text-weight-bold" style="color: #b31b1b; margin-bottom: 1.5rem;">
+                Accepted by CVPR 2026 Findings
+              </div>
+              
+              <div class="is-size-5 publication-authors">
+                <span class="author-block">
+                  <a href="https://xuan9-9.github.io/" target="_blank">Jiaxuan Ren</a><sup>2</sup>,</span>
+                <span class="author-block">
+                  <a href="https://alrightlone.github.io/" target="_blank">Junhan Zhu</a><sup>1</sup>,</span>
+                <span class="author-block">
+                  <a href="https://huanwang.tech/" target="_blank">Huan Wang</a><sup>1*</sup>
+                </span>
+              </div>
+
+              <div class="is-size-5 publication-authors">
+                <span class="author-block"><sup>1</sup>Westlake University</span>,
+                <span class="author-block"><sup>2</sup>University of Electronic Science and Technology of China</span>
+              </div>
+  
+              <div class="is-size-7" style="margin-top: 0.5rem; margin-bottom: 1.5rem;">
+                <span class="author-block"><sup>*</sup>Corresponding author: wanghuan [at] westlake [dot] edu [dot] cn</span> 
+              </div>
+  
+              <div class="columns is-centered logo-stack  mb-0 pb-0">
+
+                <div class="logo-row">
+                    <div class="column is-narrow">
+                        <img src="static/images/westlake.png" alt="Westlake University" style="height: 100px;">
+                    </div>
+                   <div class="column is-narrow">
+                        <img src="static/images/uestc.png" alt="UESTC" style="height: 100px;">
+                    </div>
+                </div>
+                
+                <div class="column is-narrow">
+                    <img src="static/images/logo.jpg" alt="ENCODE LAB" style="height: 100px;">
+                </div>
+            
+            </div>
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <section class="hero teaser">
+    <div class="container is-max-desktop">
+      <div class="hero-body" style="padding-top: 0rem;">
+          <img src="figures/teaser_hamburger.png" alt="CR-Diff teaser">
+  
+        <h2 class="subtitle is-size-6 " style="text-align: left;">
+          This paper presents CR-Diff, a method to improve the cross-resolution visual consistency of UNet-based diffusion models by masking out some parameters in the model, i.e., network pruning. While pruning is traditionally used to reduce model size, here we repurpose it to help diffusion models generalize to unseen resolutions. The samples above compare the original SDXL model with its counterpart modified by CR-Diff. The original SDXL is trained at 1024×1024 resolution and can hardly generalize to other resolutions (e.g., 400×560, 480×360), whereas after CR-Diff prunes some parameters (the remaining parameters are unchanged), it generates much more coherent images at these unseen resolutions. This suggests that some parameters in UNet-based diffusion models may act like “impurities”, and pruning, which used to be considered harmful to model capacity, can actually purify the model and improve its cross-resolution generalization.
+        </h2>
+      </div>
+    </div>
+  </section>
+
+<!-- Paper abstract -->
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified is-size-6">
+          <!-- TODO: Replace with your paper abstract -->
+          <p>
+            Diffusion models have demonstrated impressive image synthesis performance, yet many UNet–based models are trained at certain fixed resolutions. Their quality tends to degrade when generating images at out-of-training resolutions.
+We trace this issue to resolution-dependent parameter behaviors, where weights that function well at the default resolution can become adverse when spatial scales shift, weakening semantic alignment and causing structural instability in the UNet architecture.
+Based on this analysis, this paper introduces CR-Diff, a novel method that improves the cross-resolution visual consistency by pruning some parameters of the diffusion model.
+Specifically, CR-Diff has two stages.
+It first performs block-wise pruning to selectively eliminate adverse weights. Then, a pruned output amplification is conducted to further purify the pruned predictions.
+Empirically, extensive experiments suggest that CR-Diff can improve perceptual fidelity and semantic coherence across various diffusion backbones and unseen resolutions, while largely preserving the performance at default resolutions. 
+Additionally, CR-Diff supports prompt-specific refinement, enabling quality enhancement on demand.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End paper abstract -->
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Overview of our <i>CR-Diff</i> method</h2>
+        <div class="content">
+            <img src="figures/main.png" alt="CR-Diff framework">
+        </div>
+        <h2 class="subtitle is-size-6" style="text-align: left;">
+          Illustration of the proposed CR-Diff framework for improving cross-resolution generation in UNet-based diffusion models. The method follows a two-stage pruning and optimizing paradigm. First, target UNet blocks are assigned adaptive sparsity levels via a block-wise pruning strategy, where magnitude-based criteria are applied with differentiated ratios across downsampling, middle, and upsampling modules to extract resolution-stable parameter subsets. Subsequently, a pruned output amplification mechanism refines the denoising process by amplifying the pruned subnetwork outputs with a coefficient k > 1, effectively suppressing adverse contributions from the dense model. This process leads to more stable denoising trajectories and produces higher-quality images with improved structural coherence and semantic alignment across resolutions.
+        </h2>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Image carousel -->
+<section class="hero is-small" style="margin-bottom: 4rem;">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+
+      <h2 class="title is-3 has-text-centered" style="margin-bottom: 0rem;">Quantitative Results</h2>
+      <div id="results-carousel" class="carousel results-carousel" style="margin-top: -3rem;">
+       <div class="item" style="min-height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+        <!-- TODO: Replace with your research result images -->
+        <img src="figures/unseen_res.png" alt="CR-Diff figure" loading="lazy"/>
+        <!-- TODO: Replace with description of this result -->
+        <h2 class="subtitle has-text-centered">
+          Performance comparison on unseen resolutions. Across the evaluated models and resolutions, CR-Diff improves most metrics relative to the dense model, with bold values indicating superior performance of our CR-Diff against the dense model.
+        </h2>
+      </div>
+      <div class="item">
+        <img src="figures/default_res.png" alt="CR-Diff figure" style="max-width: 100%; height: auto;" loading="lazy"/>
+        <h2 class="subtitle has-text-centered">
+          Performance comparison on default resolutions. Across the evaluated models, CR-Diff consistently improves or maintains
+performance, with bold values indicating gains over the dense model.
+        </h2>
+      </div>
+
+
+  </div>
+</div>
+</div>
+</section>
+<!-- End image carousel -->
+
+
+<!-- Image carousel -->
+<section class="hero is-small">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+
+      <h2 class="title is-3 has-text-centered" style="margin-bottom: 0rem;">Qualitative Results</h2>
+      <div id="results-carousel" class="carousel results-carousel" style="margin-top: -3rem;">
+       <div class="item" style="min-height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+        <!-- TODO: Replace with your research result images -->
+        <img src="figures/sdxl_example.png" alt="CR-Diff figure" loading="lazy" />
+        <!-- TODO: Replace with description of this result -->
+        <h2 class="subtitle has-text-centered" >
+          Cross-resolution comparison on a subset of 5K prompts from the MS-COCO 2014 validation set. CR-Diff shows consistent gains in both ImageReward and visual fidelity compared to the original SDXL. Dense denotes the original unpruned model. Each group corresponds to a specific prompt, and the ImageReward (IR) scores are shown below each image.
+        </h2>
+      </div>
+      <div class="item" style="min-height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+        <!-- Your image here -->
+        <img src="figures/sd1.5_example.png" alt="CR-Diff figure" loading="lazy" />
+        <h2 class="subtitle has-text-centered" >
+          Cross-resolution comparison on a subset of 5K prompts from the MS-COCO 2014 validation set. CR-Diff shows consistent gains in both ImageReward and visual fidelity compared to the original SD1.5. Dense denotes the original unpruned model. Each group corresponds to a specific prompt, and the ImageReward (IR) scores are shown below each image.
+        </h2>
+      </div>
+      <div class="item" style="min-height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+        <!-- Your image here -->
+        <img src="figures/sd2.1_example.png" alt="CR-Diff figure" loading="lazy" />
+        <h2 class="subtitle has-text-centered" >
+          Cross-resolution comparison on a subset of 5K prompts from the MS-COCO 2014 validation set. CR-Diff shows consistent gains in both ImageReward and visual fidelity compared to the original SD2.1. Dense denotes the original unpruned model. Each group corresponds to a specific prompt, and the ImageReward (IR) scores are shown below each image.
+        </h2>
+     </div>
+
+  </div>
+</div>
+</div>
+</section>
+<!-- End image carousel -->
+
+
+
+
+、
+
+  </body>
+  
+  </html>
