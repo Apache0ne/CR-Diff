@@ -184,35 +184,12 @@
           <img src="figures/teaser_hamburger.png" alt="CR-Diff teaser">
   
         <h2 class="subtitle is-size-6 " style="text-align: left;">
-          This paper presents CR-Diff, a method to improve the cross-resolution visual consistency of UNet-based diffusion models by masking out some parameters in the model, i.e., network pruning. While pruning is traditionally used to reduce model size, here we repurpose it to help diffusion models generalize to unseen resolutions. The samples above compare the original SDXL model with its counterpart modified by CR-Diff. The original SDXL is trained at 1024×1024 resolution and can hardly generalize to other resolutions (e.g., 400×560, 480×360), whereas after CR-Diff prunes some parameters (the remaining parameters are unchanged), it generates much more coherent images at these unseen resolutions. This suggests that some parameters in UNet-based diffusion models may act like “impurities”, and pruning, which used to be considered harmful to model capacity, can actually purify the model and improve its cross-resolution generalization.
+          This paper proposes CR-Diff, a pruning-based method to improve cross-resolution consistency in UNet-based diffusion models. Pruning is used to mask certain parameters, helping the model generalize to unseen resolutions. Compared to the original SDXL trained at 1024×1024, which doesn't perform well on other resolutions, the pruned model produces more coherent results at sizes like 400×560 and 480×360. This suggests that some parameters may hinder generalization, and removing them can effectively improve performance across resolutions. 
         </h2>
       </div>
     </div>
   </section>
 
-<!-- Paper abstract -->
-<section class="section hero is-light">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Abstract</h2>
-        <div class="content has-text-justified is-size-6">
-          <!-- TODO: Replace with your paper abstract -->
-          <p>
-            Diffusion models have demonstrated impressive image synthesis performance, yet many UNet–based models are trained at certain fixed resolutions. Their quality tends to degrade when generating images at out-of-training resolutions.
-We trace this issue to resolution-dependent parameter behaviors, where weights that function well at the default resolution can become adverse when spatial scales shift, weakening semantic alignment and causing structural instability in the UNet architecture.
-Based on this analysis, this paper introduces CR-Diff, a novel method that improves the cross-resolution visual consistency by pruning some parameters of the diffusion model.
-Specifically, CR-Diff has two stages.
-It first performs block-wise pruning to selectively eliminate adverse weights. Then, a pruned output amplification is conducted to further purify the pruned predictions.
-Empirically, extensive experiments suggest that CR-Diff can improve perceptual fidelity and semantic coherence across various diffusion backbones and unseen resolutions, while largely preserving the performance at default resolutions. 
-Additionally, CR-Diff supports prompt-specific refinement, enabling quality enhancement on demand.
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- End paper abstract -->
 <section class="section hero is-light">
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
@@ -241,14 +218,13 @@ Additionally, CR-Diff supports prompt-specific refinement, enabling quality enha
         <img src="figures/unseen_res.png" alt="CR-Diff figure" loading="lazy"/>
         <!-- TODO: Replace with description of this result -->
         <h2 class="subtitle has-text-centered">
-          Performance comparison on unseen resolutions. Across the evaluated models and resolutions, CR-Diff improves most metrics relative to the dense model, with bold values indicating superior performance of our CR-Diff against the dense model.
+        Performance comparison on unseen resolutions shows that CR-Diff consistently outperforms the dense baseline across most models and resolution settings. Metrics where CR-Diff achieves better results are highlighted in bold, demonstrating its overall advantage.
         </h2>
       </div>
       <div class="item">
         <img src="figures/default_res.png" alt="CR-Diff figure" style="max-width: 100%; height: auto;" loading="lazy"/>
         <h2 class="subtitle has-text-centered">
-          Performance comparison on default resolutions. Across the evaluated models, CR-Diff consistently improves or maintains
-performance, with bold values indicating gains over the dense model.
+        Performance comparison at default resolutions shows that CR-Diff either improves or preserves performance across the evaluated models. Bold values denote cases where it outperforms the dense baseline.
         </h2>
       </div>
 
@@ -272,21 +248,21 @@ performance, with bold values indicating gains over the dense model.
         <img src="figures/sdxl_example.png" alt="CR-Diff figure" loading="lazy" />
         <!-- TODO: Replace with description of this result -->
         <h2 class="subtitle has-text-centered" >
-          Cross-resolution comparison on a subset of 5K prompts from the MS-COCO 2014 validation set. CR-Diff shows consistent gains in both ImageReward and visual fidelity compared to the original SDXL. Dense denotes the original unpruned model. Each group corresponds to a specific prompt, and the ImageReward (IR) scores are shown below each image.
+        On a 5K MS-COCO subset, consistent gains of CR-Diff over dense SDXL in ImageReward and visual fidelity across resolutions.
         </h2>
       </div>
       <div class="item" style="min-height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center;">
         <!-- Your image here -->
         <img src="figures/sd1.5_example.png" alt="CR-Diff figure" loading="lazy" />
         <h2 class="subtitle has-text-centered" >
-          Cross-resolution comparison on a subset of 5K prompts from the MS-COCO 2014 validation set. CR-Diff shows consistent gains in both ImageReward and visual fidelity compared to the original SD1.5. Dense denotes the original unpruned model. Each group corresponds to a specific prompt, and the ImageReward (IR) scores are shown below each image.
+          On a 5K MS-COCO subset, consistent gains of CR-Diff over dense SD1.5 in ImageReward and visual fidelity across resolutions.
         </h2>
       </div>
       <div class="item" style="min-height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center;">
         <!-- Your image here -->
         <img src="figures/sd2.1_example.png" alt="CR-Diff figure" loading="lazy" />
         <h2 class="subtitle has-text-centered" >
-          Cross-resolution comparison on a subset of 5K prompts from the MS-COCO 2014 validation set. CR-Diff shows consistent gains in both ImageReward and visual fidelity compared to the original SD2.1. Dense denotes the original unpruned model. Each group corresponds to a specific prompt, and the ImageReward (IR) scores are shown below each image.
+          On a 5K MS-COCO subset, consistent gains of CR-Diff over dense SD2.1 in ImageReward and visual fidelity across resolutions.
         </h2>
      </div>
 
