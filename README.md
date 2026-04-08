@@ -3,9 +3,9 @@
 <h1>Cross-Resolution Diffusion Models via Network Pruning</h1>
 <h3><font color="#8B0000">Accepted by CVPR 2026 Findings</font></h3>
 
-<a href="https://arxiv.org/abs/2510.06751">
+<a href="https://arxiv.org/abs/2604.05524">
 <img alt="Paper" src="https://img.shields.io/badge/Paper-Arxiv%20Link-light">
-<a href="https://alrightlone.github.io/OBS-Diff-Webpage/">
+<a href="https://xuan9-9.github.io/CR-Diff/">
 <img alt="Webpage" src="https://img.shields.io/badge/Webpage-blue">
 <a href="https://opensource.org/licenses/Apache-2.0">
 <img alt="Code License" src="https://img.shields.io/badge/Code%20License-Apache_2.0-yellow.svg">
@@ -13,7 +13,7 @@
 
 ![CVPR_2026_Findings](https://img.shields.io/badge/Accepted_by-CVPR_2026_Findings-8B0000)
 
-**[Jiaxuan Ren](https://xuan9-9.github.io/)**<sup>2</sup>, **[Junhan Zhu](https://alrightlone.github.io/)**<sup>1</sup>, **[Huan Wang](https://huanwang.tech/)**<sup>1*</sup>
+**Jiaxuan Ren**<sup>2</sup>, **Junhan Zhu**<sup>1</sup>, **Huan Wang**<sup>1*</sup>
 
 <sup>1</sup>Westlake University, <sup>2</sup>University of Electronic Science and Technology of China
 <br>
@@ -186,4 +186,17 @@ You can then compare:
 
 If you have any questions, please contact us at [jiaxuan.ren@std.uestc.edu.cn](mailto:jiaxuan.ren@std.uestc.edu.cn).
 
+## Citation
+If you find this work useful, please consider citing:
 
+```bibtex
+@misc{ren2026crdiff,
+      title={Cross-Resolution Diffusion Models via Network Pruning}, 
+      author={Jiaxuan Ren and Junhan Zhu and Huan Wang},
+      year={2026},
+      eprint={2604.05524},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2604.05524},       
+}
+```
