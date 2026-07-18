@@ -28,6 +28,31 @@ def resolve_dtype(name: str) -> torch.dtype:
     return table[name]
 
 
+def set_offline_mode(local_files_only: bool) -> None:
+    """Keep hub/transformers cached offline flags consistent with the CLI choice."""
+    if local_files_only:
+        os.environ["HF_HUB_OFFLINE"] = "1"
+        os.environ["TRANSFORMERS_OFFLINE"] = "1"
+    else:
+        os.environ.pop("HF_HUB_OFFLINE", None)
+        os.environ.pop("TRANSFORMERS_OFFLINE", None)
+
+    try:
+        import huggingface_hub.constants as hub_constants
+
+        hub_constants.HF_HUB_OFFLINE = bool(local_files_only)
+    except Exception:
+        pass
+
+    try:
+        import transformers.utils.hub as transformers_hub
+
+        if hasattr(transformers_hub, "_is_offline_mode"):
+            transformers_hub._is_offline_mode = bool(local_files_only)
+    except Exception:
+        pass
+
+
 def configure_scheduler(pipe: StableDiffusionXLPipeline, preset: str) -> None:
     """Install a reproducible scheduler preset without changing model weights."""
     if preset == "checkpoint":
@@ -74,6 +99,7 @@ def load_sdxl_pipeline(
     original_config_file: Optional[str] = None,
 ) -> StableDiffusionXLPipeline:
     """Load either a complete local SDXL file or a Diffusers repository."""
+    set_offline_mode(bool(local_files_only))
     dtype = resolve_dtype(model_dtype)
 
     if model_path:
